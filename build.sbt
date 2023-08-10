@@ -31,9 +31,9 @@ lazy val publishSettings = Seq(
 
 
 lazy val commonSettings = Seq(
-  version := "0.4.1",
-  scalaVersion := "2.13.5",
-  crossScalaVersions := Seq("2.13.5", "2.12.13", "2.11.12"),
+  version := "0.4.0",
+  scalaVersion := "2.13.3",
+  crossScalaVersions := Seq("2.13.3", "2.12.8", "2.11.12"),
   organization := "com.github.tototoshi",
   scalacOptions ++= Seq("-deprecation", "-language:_"),
   parallelExecution in Test := false,
@@ -51,8 +51,8 @@ lazy val core = Project(
   name := "scala-fixture",
   libraryDependencies ++= Seq(
     "com.h2database" % "h2" % "1.4.+" % "test",
-    "org.scalatest" %% "scalatest" % "3.0.9" % "test",
-    "org.flywaydb" % "flyway-core" % "7.5.4" % "test"
+    "org.scalatest" %% "scalatest" % "3.2.2" % "test",
+    "org.flywaydb" % "flyway-core" % "5.2.4" % "test"
   )
 ).settings(commonSettings ++ publishSettings)
 
@@ -62,7 +62,7 @@ lazy val play = Project(
 ).enablePlugins(SbtTwirl).settings(
   name := "scala-fixture-play",
   libraryDependencies ++= Seq(
-    "com.typesafe.play" %% "play" % "2.7.9" % "provided"
+    "com.typesafe.play" %% "play" % "2.7.5" % "provided"
   )
 ).settings(commonSettings ++ publishSettings).dependsOn(core)
 
@@ -74,12 +74,12 @@ lazy val playapp = Project(
   routesGenerator := InjectedRoutesGenerator,
   libraryDependencies ++= Seq(
     guice,
-    "org.flywaydb" %% "flyway-play" % "5.3.2",
+    "org.flywaydb" %% "flyway-play" % "5.4.0",
     jdbc,
-    "org.scalikejdbc" %% "scalikejdbc" % "3.3.4",
-    "org.scalikejdbc" %% "scalikejdbc-config" % "3.3.4",
+    "org.scalikejdbc" %% "scalikejdbc" % "3.4.2",
+    "org.scalikejdbc" %% "scalikejdbc-config" % "3.4.2",
     "com.h2database" % "h2" % "1.4.+",
-    "org.scalatest" %% "scalatest" % "3.0.9" % "test"
+    "org.scalatest" %% "scalatest" % "3.2.2" % "test"
   )
 ).settings(commonSettings ++ nonPublishSettings).dependsOn(play)
 
